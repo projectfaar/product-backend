@@ -34,7 +34,7 @@ var config = {
 };
 
 var endpointCallback = {
-  getProductByName: require("endpoints/getProductByName"),
+  getProductByName: require("./endpoints/getProductByName"),
 }
 
 // urlendpoints is populated with potential values for req.url
