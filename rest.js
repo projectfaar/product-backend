@@ -30,6 +30,10 @@ var config = {
   endpoints: ["getProductByName"]
 };
 
+var endpointCallback = {
+  getProductByName: require("endpoints/getProductByName"),
+}
+
 // urlendpoints is populated with potential values for req.url
 config.urlendpoints = [];
 config.endpoints.map(function(e) {
@@ -42,7 +46,12 @@ http.createServer(function(req, res) {
 
   if(config.urlendpoints.indexOf(endpoint) > -1) { // is a valid endpoint?
     endpoint = endpoint.slice(config.bareEndpoint.length); // remove the base URL for the endpoint name
-    console.log("Found endpoint "+endpoint);
+
+    if(endpointCallback[endpoint]) {
+      endpointCallback[endpoint](req, res);
+    } else {
+      console.log("Known API endpoint with no handlers for URL "+url);
+    }
   } else {
     console.log("Unknown API endpoint "+url);
   }
