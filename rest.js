@@ -33,14 +33,15 @@ var config = {
   endpoints: ["getProductByName"]
 };
 
-var endpointCallback = {
-  getProductByName: require("./endpoints/getProductByName"),
-}
+// endpointCallback provides callbacks based on a specific endpoint
+// function callback(req, res)
+var endpointCallback = {};
 
 // urlendpoints is populated with potential values for req.url
 config.urlendpoints = [];
 config.endpoints.map(function(e) {
   config.urlendpoints.push(config.bareEndpoint + e);
+  endpointCallback[e] = require("./endpoints/"+e);
 });
 
 http.createServer(function(req, res) {
