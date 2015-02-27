@@ -1,5 +1,8 @@
 // rest.js
 // RESTful node.js webserver for FAAR backend access
+// usage: node rest.js [config]
+// config is an optional configuration file path,
+// assumed to be located in config.json
 
 /*
 The MIT License (MIT)
@@ -26,12 +29,9 @@ SOFTWARE.
 */
 
 var http = require('http');
+var fs = require('fs');
 
-var config = {
-  port: 8080,
-  bareEndpoint: "/api/",
-  endpoints: ["getProductByName"]
-};
+var config = JSON.parse(fs.readFileSync(process.argv[2] || "./config.json").toString());
 
 // endpointCallback provides callbacks based on a specific endpoint
 // function callback(req, res)
