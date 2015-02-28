@@ -1,0 +1,16 @@
+{
+  "name": "faar-product-backend",
+  "description": "Product REST Backend for Project FAAR",
+  "version": "0.0.1",
+  "license": {
+    "license": "MIT"
+  },
+  "main": "rest.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/projectfaar/product-backend"
+  },
+  "dependencies": {
+    "sqlite3": "3.0.5"
+  }
+}
