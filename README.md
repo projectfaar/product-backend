@@ -20,7 +20,7 @@ Parameters are specified in the URL. This request returns a JSON object in the f
       }
     }
 
-If the transaction failed from some reason, the result will ook like the following:
+If the transaction failed from some reason, the result will look like the following:
 
     {
       "status": -1,
