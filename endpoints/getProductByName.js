@@ -28,22 +28,18 @@ SOFTWARE.
 */
 
 var querystring = require("querystring");
+var DBManager = require("../DBManager");
 
 module.exports = function(req, res) {
   var parameters = querystring.decode(req.url.split("?")[1]);
 
   if(!!parameters.name) {
-    // dummy product for now
-    // we'll integrate with the DB soon
-    var product = {
-      name: parameters.name,
-      id: 1234
-    };
-
-    res.end(JSON.stringify({
-      status: 0,
-      product: product
-    }));
+     DBManager.getProductByName(parameters.name, function(product) {
+      res.end(JSON.stringify({
+        status: 0,
+        product: product
+      }));
+    });
   } else {
     console.log("Missing parameter(s) in URL "+req.url);
     res.end(JSON.stringify({

@@ -33,6 +33,10 @@ var fs = require('fs');
 
 var config = JSON.parse(fs.readFileSync(process.argv[2] || "./config.json").toString());
 
+// init DB
+var DBManager = require("./DBManager");
+DBManager.init(config.db);
+
 // endpointCallback provides callbacks based on a specific endpoint
 // function callback(req, res)
 var endpointCallback = {};

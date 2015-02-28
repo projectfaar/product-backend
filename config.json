@@ -1,5 +1,6 @@
 {
   "port": 8080,
   "bareEndpoint": "/api/",
-  "endpoints": ["getProductByName"]
+  "endpoints": ["getProductByName"],
+  "db": "products.sqlite"
 }
