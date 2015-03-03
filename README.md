@@ -61,3 +61,5 @@ The general schema is:
     }
 
 `name` is a lowercase product name, `id` is a unique ID of some sort, `aisle` is the aisle number in the store, and `aislePosition` is represents the "Y" coordinate on the store map, where 0 is the absolute top and 255 is the bottom. `aislePosition` can be treated as a percentage with a denominator of 256.
+
+Courtesy of Project FAAR.
