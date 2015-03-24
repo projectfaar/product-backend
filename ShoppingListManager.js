@@ -1,7 +1,6 @@
-// endpoints/getShopperList.js
-// endpoint for querying shopping lists
-// parameters: String token
-// return: String products[]
+// DBManager.js
+// provides high-level interface to shopping lists
+// tunneled to https://github.com/projectfaar/shopping-list
 
 /*
 The MIT License (MIT)
@@ -27,24 +26,29 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-var querystring = require("querystring");
-var ShoppingListManager = require("../ShoppingListManager");
+var net = require("net");
 
-module.exports = function(req, res) {
-  var parameters = querystring.decode(req.url.split("?")[1]);
+;
 
-  if(!!parameters.token) {
-     ShoppingListManager.getShoppingList(parameters.token, function(list) {
-      res.end(JSON.stringify({
-        status: 0,
-        list: list
-      }));
-    });
-  } else {
-    console.log("Missing parameter(s) in URL "+req.url);
-    res.end(JSON.stringify({
-      status: -1,
-      errorMessage: "Missing parameters"
-    }));
-  }
+var MASTERTOKEN = "CATSONRATS";
+
+module.exports.init = function() {
+
+}
+
+module.exports.getShoppingList = function(name, callback) {
+  var client = net.connect({
+    port: 1337
+  }, function() {
+    client.write(MASTERTOKEN+","+name);
+  });
+
+  client.on("data", function(d) {
+    callback(d.toString());
+    client.end();
+  })
+}
+
+module.exports.close = function() {
+
 }
