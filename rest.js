@@ -52,6 +52,8 @@ http.createServer(function(req, res) {
   var url = req.url;
   var endpoint = url.split("?")[0];
 
+  console.log(url);
+
   if(config.urlendpoints.indexOf(endpoint) > -1) { // is a valid endpoint?
     endpoint = endpoint.slice(config.bareEndpoint.length); // remove the base URL for the endpoint name
 

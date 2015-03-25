@@ -37,7 +37,7 @@ module.exports = function(req, res) {
      ShoppingListManager.getShoppingList(parameters.token, function(list) {
       res.end(JSON.stringify({
         status: 0,
-        list: list
+        list: JSON.parse(list)
       }));
     });
   } else {
